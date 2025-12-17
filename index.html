@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contador de tiempo</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Dancing+script:wght@600&family=Nunito:wght@300;600&display=swap');
+
+            #contador{
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+            body{
+                margin: 0;
+                padding: 0;
+                background-color: pink;
+                font-family: 'Dancing script', cursive;
+                text-align: center;
+                margin-top: 50px;
+            }
+            #contador-container {
+            position: relative;
+            bottom: 20px;
+            left: 20px;
+            text-align: center;
+        }
+        .heart {
+             position: fixed;
+             top: -20px;
+             width: 20px;
+             height: 20px;
+             background-color: #ff4d6d;
+             transform: rotate(45deg);
+             animation: fall linear forwards;
+                }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        </style>
+    </head>
+
+    <body>
+        <div id="contador-container">
+           <h1>Nuestra historia empezo hace...</h1>
+            <div id="contador"></div>
+        </div>
+
+        <script>
+            const Fechainicio= new Date(2021,3,16,19,45,0)
+
+            function actualizarContador(){
+                const ahora = new Date();
+                const diferencia = ahora - Fechainicio;
+
+                const segundosTotales = Math.floor(diferencia/1000);
+
+                const dias = Math.floor(segundosTotales/(60*60*24));
+                const horas = Math.floor((segundosTotales%(60*60*24))/(60*60));
+                const minutos = Math.floor((segundosTotales%(60*60))/60);
+                const segundos = segundosTotales % 60;
+
+                document.getElementById("contador").innerHTML = 
+                `${dias}dias, ${horas}horas, ${minutos}minutos, ${segundos}segundos`;
+            }
+
+            setInterval(actualizarContador, 1000);
+            actualizarContador();
+
+            const colors = ['#ff4d6d', '#ff758f', '#c9184a', '#ffb3c1', '#ffccd5'];
+
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.backgroundColor = color;
+
+                const size = Math.random() * 15 + 10;
+                heart.style.width = size + 'px';
+                heart.style.height = size + 'px';
+
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+
+            // Genera corazones continuamente
+            setInterval(createHeart, 200);
+        </script>
+
+    </body>
+</html>
