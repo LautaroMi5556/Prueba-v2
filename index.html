@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
+        <link rel="manifest" href="manifest.json">
         <meta charset="UTF-8">
         <title>Contador de tiempo</title>
         <style>
@@ -13,7 +14,7 @@
             body{
                 margin: 0;
                 padding: 0;
-                background-color: pink;
+                background-color: rgb(255, 192, 203);
                 font-family: 'Dancing script', cursive;
                 text-align: center;
                 margin-top: 50px;
@@ -116,6 +117,11 @@
 
             // Genera corazones continuamente
             setInterval(createHeart, 200);
+        </script>
+        <script>
+            if('serviceWorker' in navigator){
+                navigator.serviceWorker.register('sw.js');
+            }
         </script>
 
     </body>
