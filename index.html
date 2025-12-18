@@ -7,10 +7,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Nunito:wght@300;600&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contador de tiempo</title>
+        <title>A + L</title>
         <style>
-           /*@import url('https://fonts.googleapis.com/css2?family=Dancing+script:wght@600&family=Nunito:wght@300;600&display=swap');*/
-
             #contador{
                 font-size: 2.0rem;
                 font-weight: bold;
@@ -93,7 +91,7 @@
                 const segundos = segundosTotales % 60;
 
                 document.getElementById("contador").innerHTML = 
-                `${dias}dias, ${horas}horas, ${minutos}minutos, ${segundos}segundos`;
+                `${dias} Días, ${horas} Horas, ${minutos} Minutos, ${segundos} Segundos`;
             }
 
             setInterval(actualizarContador, 1000);
@@ -134,4 +132,3 @@
     </body>
 
 </html>
-
